@@ -18,7 +18,8 @@
 		"GPL-2.0+"
 	],
 	"require": {
-		"typo3/cms-core": "^11.0"
+		"typo3/cms-core": "^11.0",
+		"itk-dev/itk_pretix": "^1.1.0"
 	},
 	"suggest": {
 	},
