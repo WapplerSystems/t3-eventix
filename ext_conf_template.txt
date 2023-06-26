@@ -1,0 +1,3 @@
+
+# cat=Backend; type=string; label=API token
+token =
