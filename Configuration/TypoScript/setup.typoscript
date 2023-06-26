@@ -1,0 +1,20 @@
+plugin.tx_pretix {
+  view {
+    templateRootPaths.0 = EXT:pretix/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_pretix.view.templateRootPath}
+    partialRootPaths.0 = EXT:pretix/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_pretix.view.partialRootPath}
+    layoutRootPaths.0 = EXT:pretix/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_pretix.view.layoutRootPath}
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_pretix.persistence.storagePid}
+  }
+
+  settings {
+
+
+  }
+}
+

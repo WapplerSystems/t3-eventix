@@ -1,7 +1,7 @@
 <?php
 
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use WapplerSystens\Pretix\Controller\EventsController;
+use WapplerSystems\Pretix\Controller\EventsController;
 
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');

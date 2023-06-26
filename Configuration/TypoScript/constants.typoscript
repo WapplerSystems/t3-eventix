@@ -1,0 +1,22 @@
+# customcategory=plugin.tx_pretix=Pretix
+
+plugin.tx_pretix {
+  view {
+    # cat=plugin.tx_pretix/file; type=string; label=Path to template root (FE)
+    templateRootPath = EXT:pretix/Resources/Private/Templates/
+    # cat=plugin.tx_pretix/file; type=string; label=Path to template partials (FE)
+    partialRootPath = EXT:pretix/Resources/Private/Partials/
+    # cat=plugin.tx_pretix/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = EXT:pretix/Resources/Private/Layouts/
+  }
+
+  persistence {
+    # cat=plugin.tx_pretix//a; type=string; label=Default storage PID
+    storagePid =
+  }
+
+  settings {
+
+
+  }
+}
