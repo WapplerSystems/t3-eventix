@@ -38,12 +38,15 @@ class ApiService {
 
         $token = GeneralUtility::makeInstance(ExtensionConfiguration::class)
             ->get('pretix', 'token');
+        $organizer = GeneralUtility::makeInstance(ExtensionConfiguration::class)
+            ->get('pretix', 'organizer');
         if (empty($token)) {
             throw new Exception('no pretix token given');
         }
 
         $options = [];
         $options['api_token'] = $token;
+        $options['organizer'] = $organizer;
 
         $this->client = GeneralUtility::makeInstance(Client::class, $options);
         $this->connected = true;
@@ -51,10 +54,8 @@ class ApiService {
 
     public function getEvents() : array {
 
-
-        $events = $this->client->getEvents();
-
-        return $events;
+        $this->connect();
+        return $this->client->getEvents()->toArray();
     }
 
 

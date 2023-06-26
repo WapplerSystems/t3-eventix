@@ -24,6 +24,7 @@ ExtensionUtility::configurePlugin(
         EventsController::class => 'list',
     ],
     [
+        EventsController::class => 'list',
     ],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );

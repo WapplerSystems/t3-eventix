@@ -2,8 +2,18 @@
 
 <f:section name="main">
 
+    <f:debug>{events}</f:debug>
 
-    deded
+    <ul class="list-unstyled">
+
+        <f:for each="{events}" as="event">
+
+            <f:if condition="{event.is_public}">
+                <li><a target="_blank" href="{event.public_url}">{event.date_from -> f:format.date(format:'d.m.Y')}:  {event.name.de}</a></li>
+            </f:if>
+
+        </f:for>
+    </ul>
 
 
 </f:section>

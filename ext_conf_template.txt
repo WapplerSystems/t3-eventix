@@ -1,3 +1,5 @@
 
 # cat=Backend; type=string; label=API token
 token =
+# cat=Backend; type=string; label=Organizer
+organizer =
