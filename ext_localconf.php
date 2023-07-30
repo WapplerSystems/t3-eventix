@@ -3,9 +3,6 @@
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use WapplerSystems\Pretix\Controller\EventsController;
 
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
 
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['pretix'] ?? null)) {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['pretix'] = [
