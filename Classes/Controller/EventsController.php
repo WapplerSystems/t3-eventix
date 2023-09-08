@@ -20,11 +20,33 @@ class EventsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     public function listAction(): ResponseInterface
     {
-        $events = $this->apiService->getEvents();
 
+        if (($this->settings['event'] ?? '') !== '') {
+
+            $event = $this->apiService->getEvent($this->settings['event']);
+            if ($event !== null) {
+                $subEvents = $this->apiService->getSubEvents($event);
+                $filteredSubEvents = [];
+                foreach ($subEvents as $subEvent) {
+                    if (($subEvent['active'] ?? false) && strtotime($subEvent['date_from']) > time()) {
+                        $filteredSubEvents[] = $subEvent;
+                    }
+                }
+
+                $this->view->assignMultiple([
+                    'event' => $event,
+                    'subEvents' => $filteredSubEvents,
+                ]);
+            }
+        } else {
+
+            $events = $this->apiService->getEvents();
+            $this->view->assignMultiple([
+                'events' => $events,
+            ]);
+        }
 
         $this->view->assignMultiple([
-            'events' => $events,
             'settings' => $this->settings,
         ]);
 

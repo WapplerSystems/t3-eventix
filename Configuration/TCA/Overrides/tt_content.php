@@ -12,3 +12,16 @@ ExtensionUtility::registerPlugin(
     'Pretix'
 );
 
+ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:pretix/Configuration/FlexForms/Events.xml',
+    'pretix_events'
+);
+
+// Add the FlexForm to the show item list
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin, pi_flexform',
+    'pretix_events',
+    'after:palette:headers'
+);

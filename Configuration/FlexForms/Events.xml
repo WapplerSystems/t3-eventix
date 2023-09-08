@@ -1,0 +1,60 @@
+<T3DataStructure>
+	<sheets>
+		<!--
+			################################
+			  SHEET General Settings
+			################################
+		-->
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:pretix/Resources/Private/Language/Backend.xlf:flexforms_tab.settings</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+					<!-- order -->
+					<settings.event>
+						<TCEforms>
+							<label>Subevents von Event</label>
+							<config>
+								<type>input</type>
+							</config>
+						</TCEforms>
+					</settings.event>
+
+					<!-- order direction  -->
+					<settings.orderDirection>
+						<TCEforms>
+							<label>LLL:EXT:pretix/Resources/Private/Language/Backend.xlf:flexforms_general.orderDirection</label>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:pretix/Resources/Private/Language/Backend.xlf:flexforms_general.orderDirection.asc</numIndex>
+										<numIndex index="1">asc</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:pretix/Resources/Private/Language/Backend.xlf:flexforms_general.orderDirection.desc</numIndex>
+										<numIndex index="1">desc</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.orderDirection>
+
+
+
+
+				</el>
+			</ROOT>
+		</sDEF>
+
+
+	</sheets>
+</T3DataStructure>

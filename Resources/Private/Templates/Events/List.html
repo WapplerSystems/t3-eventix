@@ -2,6 +2,18 @@
 
 <f:section name="main">
 
+    <f:if condition="{events}">
+        <f:render section="Events" arguments="{_all}"/>
+    </f:if>
+    <f:if condition="{subEvents}">
+        <f:render section="SubEvents" arguments="{_all}"/>
+    </f:if>
+
+
+</f:section>
+
+<f:section name="Events">
+
     <ul class="list-unstyled">
 
         <f:for each="{events}" as="event">
@@ -13,5 +25,19 @@
         </f:for>
     </ul>
 
+</f:section>
+
+<f:section name="SubEvents">
+
+    <ul class="list-unstyled">
+
+        <f:for each="{subEvents}" as="subEvent">
+
+            <f:if condition="{subEvent.is_public}">
+                <li><a target="_blank" href="{event.publicUrl}{subEvent.id}/">{subEvent.date_from -> f:format.date(format:'d.m.Y')}:  {subEvent.name.de}</a></li>
+            </f:if>
+
+        </f:for>
+    </ul>
 
 </f:section>
