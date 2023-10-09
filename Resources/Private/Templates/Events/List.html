@@ -14,27 +14,40 @@
 
 <f:section name="Events">
 
-    <ul class="list-unstyled">
+    <table class="table table-striped table-hover align-middle">
 
         <f:for each="{events}" as="event">
-
             <f:if condition="{event.is_public}">
-                <li><a target="_blank" href="{event.public_url}">{event.date_from -> f:format.date(format:'d.m.Y')}:  {event.name.de}</a></li>
+                <tr>
+                    <td>{event.name.de}</td>
+                    <td>{event.date_from -> f:format.date(format:'d.m.Y')}</td>
+                    <td><a class="btn btn-primary" target="_blank" href="{event.public_url}">Zur Buchung</a></td>
+                </tr>
             </f:if>
 
         </f:for>
-    </ul>
+
+    </table>
+
+
 
 </f:section>
 
 <f:section name="SubEvents">
 
-    <ul class="list-unstyled">
+    <ul class="list-group">
 
-        <f:for each="{subEvents}" as="subEvent">
+        <f:for each="{subEvents}" as="subEvent" iteration="iteration">
 
             <f:if condition="{subEvent.is_public}">
-                <li><a target="_blank" href="{event.publicUrl}{subEvent.id}/">{subEvent.date_from -> f:format.date(format:'d.m.Y')}:  {subEvent.name.de}</a></li>
+                <li class="list-group-item{f:if(condition:iteration.isEven,then:' list-group-item-secondary')}">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0"><b>{subEvent.name.de}</b></div>
+                        <div class="col-12 col-md-3 mb-3 mb-md-0"><span style="white-space: nowrap"><i class="t3b-icon-calendar-alt"></i> {subEvent.date_from -> f:format.date(format:'d.m.Y')}</span>&nbsp;&nbsp;&nbsp;<span style="white-space: nowrap"><i class="t3b-icon-clock"></i> {subEvent.date_from -> f:format.date(format:'H:i')}</span></div>
+                        <div class="col-12 col-md-3"><a class="btn btn-primary" target="_blank" href="{event.publicUrl}{subEvent.id}/">Zur Buchung</a></div>
+                    </div>
+                </li>
+
             </f:if>
 
         </f:for>
