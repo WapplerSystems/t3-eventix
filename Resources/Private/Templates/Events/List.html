@@ -42,8 +42,8 @@
             <f:if condition="{subEvent.is_public}">
                 <li class="list-group-item{f:if(condition:iteration.isEven,then:' list-group-item-secondary')}">
                     <div class="row">
-                        <div class="col-12 col-md-6 mb-2 mb-md-0"><b>{subEvent.name.de}</b></div>
-                        <div class="col-12 col-md-3 mb-3 mb-md-0"><span style="white-space: nowrap"><i class="t3b-icon-calendar-alt"></i> {subEvent.date_from -> f:format.date(format:'d.m.Y')}</span>&nbsp;&nbsp;&nbsp;<span style="white-space: nowrap"><i class="t3b-icon-clock"></i> {subEvent.date_from -> f:format.date(format:'H:i')}</span></div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0 d-flex justify-content-center"><b>{subEvent.name.de}</b></div>
+                        <div class="col-12 col-md-3 mb-3 mb-md-0 d-flex justify-content-center"><div><span style="white-space: nowrap"><i class="t3b-icon-calendar-alt"></i> {subEvent.date_from -> f:format.date(format:'d.m.Y')}</span>&nbsp;&nbsp;&nbsp;<span style="white-space: nowrap"><i class="t3b-icon-clock"></i> {subEvent.date_from -> f:format.date(format:'H:i')}</span></div></div>
                         <div class="col-12 col-md-3"><a class="btn btn-primary" target="_blank" href="{event.publicUrl}{subEvent.id}/">Zur Buchung</a></div>
                     </div>
                 </li>
