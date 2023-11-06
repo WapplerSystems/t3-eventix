@@ -3,12 +3,13 @@
 namespace WapplerSystems\Pretix\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WapplerSystems\Pretix\Service\ApiService;
 
 
 /**
  */
-class EventsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class EventsController extends ActionController
 {
 
 
@@ -28,8 +29,8 @@ class EventsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $subEvents = $this->apiService->getSubEvents($event);
                 $filteredSubEvents = [];
                 foreach ($subEvents as $subEvent) {
-                    if (($subEvent['active'] ?? false) && strtotime($subEvent['date_from']) > time()) {
-                        $filteredSubEvents[] = $subEvent;
+                    if ($subEvent->getActive() && strtotime($subEvent->getDateFrom()) > time()) {
+                        $filteredSubEvents[] = $subEvent->toArray();
                     }
                 }
 
@@ -40,7 +41,7 @@ class EventsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         } else {
 
-            $events = $this->apiService->getEvents();
+            $events = $this->apiService->getEvents()->toArray();
             $this->view->assignMultiple([
                 'events' => $events,
             ]);

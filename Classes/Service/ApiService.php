@@ -5,7 +5,9 @@ namespace WapplerSystems\Pretix\Service;
 
 
 use ItkDev\Pretix\Api\Client;
+use ItkDev\Pretix\Api\Collections\EntityCollection;
 use ItkDev\Pretix\Api\Entity\Event;
+use ItkDev\Pretix\Api\Entity\SubEvent;
 use ItkDev\Pretix\Api\Exception\ClientException;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
@@ -55,10 +57,10 @@ class ApiService
         $this->connected = true;
     }
 
-    public function getEvents(): array
+    public function getEvents(): ?EntityCollection
     {
         $this->connect();
-        return $this->client->getEvents()->toArray();
+        return $this->client->getEvents();
     }
 
     public function getEvent(string $event): \ItkDev\Pretix\Api\Entity\AbstractEntity|\ItkDev\Pretix\Api\Entity\Event|null
@@ -71,14 +73,27 @@ class ApiService
         }
     }
 
-    public function getSubEvents(Event $event): array
+    public function getSubEvents(Event $event): ?EntityCollection
     {
         $this->connect();
 
         if ($event->hasSubevents()) {
-            return $this->client->getSubEvents($event)->toArray();
+            return $this->client->getSubEvents($event);
         }
-        return [];
+        return null;
+    }
+
+    public function getQuotas(Event $event, SubEvent $subEvent = null) : ?EntityCollection {
+        $this->connect();
+
+        $options = [
+            'with_availability' => 'true',
+        ];
+        if ($subEvent !== null) {
+            $options['subevent'] = $subEvent->getId();
+            $options['subevent_in'] = $subEvent->getId();
+        }
+        return $this->client->getQuotas($event, $options);
     }
 
 
