@@ -73,12 +73,12 @@ class ApiService
         }
     }
 
-    public function getSubEvents(Event $event): ?EntityCollection
+    public function getSubEvents(Event $event, array $query = null): ?EntityCollection
     {
         $this->connect();
 
         if ($event->hasSubevents()) {
-            return $this->client->getSubEvents($event);
+            return $this->client->getSubEvents($event, $query);
         }
         return null;
     }

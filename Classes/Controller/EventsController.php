@@ -26,14 +26,13 @@ class EventsController extends ActionController
 
             $event = $this->apiService->getEvent($this->settings['event']);
             if ($event !== null) {
-                $subEvents = $this->apiService->getSubEvents($event);
+                $subEvents = $this->apiService->getSubEvents($event, ['with_availability_for' => 'web']);
                 $filteredSubEvents = [];
                 foreach ($subEvents as $subEvent) {
-                    if ($subEvent->getActive() && strtotime($subEvent->getDateFrom()) > time()) {
+                    if ($subEvent->getActive() && strtotime($subEvent->getDateFrom()) > time() && $subEvent->getBestAvailabilityState() > 0) {
                         $filteredSubEvents[] = $subEvent->toArray();
                     }
                 }
-
                 $this->view->assignMultiple([
                     'event' => $event,
                     'subEvents' => $filteredSubEvents,
